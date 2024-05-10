@@ -1,0 +1,20 @@
+snail = function(array) {
+  let result=[];
+  if(array[0].length<=1){return array[0];}
+  let length=array.length;
+  for(let j=0;j<length/2;j++){
+    for(let i=j;i<length-j;i++){
+      result.push(array[j][i]);
+    }
+    for(let i=j+1;i<length-j;i++){
+      result.push(array[i][length-1-j]);
+    }
+    for(let i=length-2-j;i>=j;i--){
+      result.push(array[length-1-j][i]);
+    }
+    for(let i=length-2-j;i>j;i--){
+      result.push(array[i][j]);
+    }
+  }
+  return result;
+}
