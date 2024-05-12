@@ -1,0 +1,51 @@
+function formatDuration (seconds) {
+  let result="";
+  let mod=3600;
+  if(seconds>=mod*24*365){
+    result+=Math.floor(seconds/(mod*24*365))+" year";
+    if(seconds>=mod*24*2*365){
+      result+="s";
+    }
+    result+=", "
+    seconds%=(mod*24*365);
+  }
+  if(seconds>=mod*24){
+    result+=Math.floor(seconds/(mod*24))+" day";
+    if(seconds>=mod*24*2){
+      result+="s";
+    }
+    result+=", "
+    seconds%=(mod*24);
+  }
+  if(seconds>=mod){
+    result+=Math.floor(seconds/(mod))+" hour";
+    if(seconds>=mod*2){
+      result+="s";
+    }
+    result+=", "
+    seconds%=(mod);
+  }
+  if(seconds>=mod/60){
+    result+=Math.floor(seconds/(mod/60))+" minute";
+    if(seconds>=mod/30){
+      result+="s";
+    }
+    result+=", "
+    seconds%=(mod/60);
+  }
+  if(seconds>0){
+    result+=seconds+" second";
+    if(seconds>=2){
+      result+="s";
+    }
+    result+=", "
+  }else if(seconds==0&&result==''){return "now"}
+  result=result.slice(0,-2);
+  for(let i=result.length-1;i>=0;i--){
+    if(result[i]==','){
+      result=result.slice(0,i)+" and"+result.slice(i+1);
+      break;
+    }
+  }
+  return result;
+}
